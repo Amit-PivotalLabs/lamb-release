@@ -1,0 +1,72 @@
+---
+name: doppler
+templates:
+  doppler_ctl.erb: bin/doppler_ctl
+  doppler.json.erb: config/doppler.json
+
+packages:
+- lamb-common
+- doppler
+
+properties:
+  doppler.zone:
+    description: Zone of the doppler server
+  doppler.debug:
+    description: boolean value to turn on verbose logging for doppler system (dea agent & doppler server)
+    default: false
+  doppler.status.user:
+    description: username used to log into varz endpoint
+    default: ""
+  doppler.status.password:
+    description: password used to log into varz endpoint
+    default: ""
+  doppler.status.port:
+    description: port used to run the varz endpoint
+    default: 0
+  doppler.maxRetainedLogMessages:
+    description: number of log messages to retain per application
+    default: 100
+  doppler.incoming_port:
+    description: Port for incoming log messages in the legacy format
+    default: 3456
+  doppler.dropsonde_incoming_port:
+    description: Port for incoming messages in the dropsonde format
+    default: 3457
+  doppler.outgoing_port:
+    description: Port for outgoing log messages
+    default: 8081
+  doppler.blacklisted_syslog_ranges:
+    description: "Blacklist for IPs that should not be used as syslog drains, e.g. internal ip addresses."
+  doppler.container_metric_ttl_seconds:
+    description: "TTL (in seconds) for container usage metrics"
+    default: 120
+  doppler.collector_registrar_interval_milliseconds:
+    description: "Interval for registering with collector"
+    default: 60000
+  doppler.unmarshaller_count:
+    description: "Number of parallel unmarshallers to run within Doppler"
+    default: 5
+  doppler.sink_inactivity_timeout_seconds:
+    description: "Interval before removing a sink due to inactivity"
+    default: 3600
+  doppler_endpoint.shared_secret:
+    description: "Shared secret used to verify cryptographically signed doppler messages"
+  etcd.machines:
+    description: "IPs pointing to the ETCD cluster"
+  metron_endpoint.host:
+    description: "The host used to emit messages to the Metron agent"
+    default: "127.0.0.1"
+  metron_endpoint.dropsonde_port:
+    description: "The port used to emit dropsonde messages to the Metron agent"
+    default: 3457
+  nats.user:
+    description: "Username for cc client to connect to NATS"
+  nats.password:
+    description: "Password for cc client to connect to NATS"
+  nats.machines:
+    description: "IP addresses of Cloud Foundry NATS servers"
+  nats.port:
+    description: "IP port of Cloud Foundry NATS server"
+  ssl.skip_cert_verify:
+    description: "when connecting over TLS, don't verify certificates"
+    default: false

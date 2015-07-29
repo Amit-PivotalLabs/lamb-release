@@ -1,0 +1,4 @@
+---
+name: lamb-common
+files:
+- common/utils.sh
